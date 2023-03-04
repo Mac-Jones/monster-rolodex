@@ -50,7 +50,7 @@ class App extends Component {
 						});
 					}}
 				/>
-				{this.state.monsters.map((monster) => {
+				{filteredMonster.map((monster) => {
 					return (
 						<div key={monster.id}>
 							<h1>{monster.name}</h1>
