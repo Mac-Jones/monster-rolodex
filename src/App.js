@@ -8,6 +8,7 @@ class App extends Component {
 
 		this.state = {
 			monsters: [],
+			searchField: '',
 		};
 		console.log('constructor');
 	}
@@ -30,6 +31,11 @@ class App extends Component {
 
 	render() {
 		console.log('Render');
+
+		const filteredMonster = this.state.monsters.filter((monster) => {
+			return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+		});
+
 		return (
 			<div className='App'>
 				<input
@@ -37,13 +43,10 @@ class App extends Component {
 					type='search'
 					placeholder='search-monsters'
 					onChange={(event) => {
-						const searchString = event.target.value.toLocaleLowerCase();
-						const filteredMonster = this.state.monsters.filter((monster) => {
-							return monster.name.toLocaleLowerCase().includes(searchString);
-						});
+						const searchField = event.target.value.toLocaleLowerCase();
 
 						this.setState(() => {
-							return { monsters: filteredMonster };
+							return { searchField };
 						});
 					}}
 				/>
